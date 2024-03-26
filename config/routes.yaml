@@ -3,3 +3,16 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+#sender_channels:
+#    path: /channels
+#    controller: App\Controller\SenderController::channels
+
+app_login:
+    path: /login
+    controller: App\Controller\SecurityController::login
+
+user_channel_settings:
+    path: /user_channel_settings
+    controller: App\Controller\UserChannelSettingsController::index
+    methods: ['GET']

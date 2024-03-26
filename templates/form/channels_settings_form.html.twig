@@ -1,0 +1,10 @@
+{# templates/form/channels_settings_form.html.twig #}
+
+{{ form_start(form) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.sms) }}
+    {{ form_row(form.webPush) }}
+    {{ form_row(form.telegram) }}
+
+<button type="submit">Сохранить</button>
+{{ form_end(form) }}
