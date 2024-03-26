@@ -1,0 +1,47 @@
+{# templates/user_channel_settings/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}User Channel Settings{% endblock %}
+
+{% block body %}
+    <h1>User Channel Settings</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Channel Name</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for userChannelSetting in userChannelSettings %}
+            <tr>
+                <td>{{ userChannelSetting.channelName }}</td>
+                <td>{{ userChannelSetting.description }}</td>
+                <td>
+                    {% if userChannelSetting.isActive %}
+                        <span class="badge badge-success">Active</span>
+                    {% else %}
+                        <span class="badge badge-secondary">Inactive</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <form action="{{ path('user_channel_settings_toggle', {'id': userChannelSetting.id}) }}" method="post">
+                        <button type="submit" class="btn btn-sm btn-primary">
+                            {% if userChannelSetting.isActive %}
+                                Deactivate
+                            {% else %}
+                                Activate
+                            {% endif %}
+                        </button>
+                        <input type="hidden" name="_token" value="{{ csrf_token('toggle' ~ userChannelSetting.id) }}">
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
